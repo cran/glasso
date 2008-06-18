@@ -1,15 +1,26 @@
-glasso=function(s, rho, thr=1.0e-4,maxit=1e4, approx=FALSE, penalize.diagonal=TRUE,start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE){
+glasso=function(s, rho, zero=NULL, thr=1.0e-4,maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE,start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE){
 n=nrow(s)
 # on return, cflag=1 means the procedure did not converge, =0 means  it did
+
+BIG=10e9
 
 if(!is.matrix(rho) & length(rho)!=1 & length(rho)!=nrow(s))
    {stop("Wrong number of elements in rho")}
 if(length(rho)==1 & rho==0){ 
  cat("With rho=0, there may be convergence problems if the input matrix s
- is not of full rank",fill=T)}
+ is not of full rank",fill=TRUE)}
 
 if(is.vector(rho)){ rho=matrix(sqrt(rho))%*%sqrt(rho)}
 if(length(rho)==1){rho=matrix(rho,ncol=n,nrow=n)}
+
+if(!is.null(zero)){
+   if(!is.matrix(zero)){ zero=matrix(zero,nrow=TRUE)}
+   for(k in 1:nrow(zero)){
+      i=zero[k,1]
+      j=zero[k,2]
+    rho[i,j]=BIG
+    rho[j,i]=BIG
+  }}
 
 start.type=match.arg(start)
 if(start.type=="cold"){

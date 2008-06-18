@@ -5,11 +5,14 @@
 Estimates a sparse inverse covariance matrix using a lasso (L1) penalty
 }
 \usage{
-glasso(s, rho, thr=1.0e-4,maxit=1e4, approx=FALSE, penalize.diagonal=TRUE, start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE)
+glasso(s, rho, zero=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE, start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE)
 }
 \arguments{
 \item{s}{Covariance matrix:p by p matrix (symmetric)}
 \item{rho}{(Non-negative) regularization parameter for lasso. rho=0 means no regularization. Can be a scalar (usual) or a symmetric p by p matrix, or a vector of length p. In the latter case, the penalty matrix has jkth element sqrt(rho[j]*rho[k]).}
+\item{zero}{(Optional) indices of entries of inverse covariance to be constrained to be zero. The input should be a matrix with two columns, each row indicating
+the indices of elements to be constrained to be zero. The solution must be symmetric, so you need only  specify one of (j,k) and (k,j). An entry in the zero matrix
+overrides any entry in the rho matrix for a given element.}
 \item{thr}{Threshold for convergence. Default value is 1e-4.  Iterations stop when average absolute parameter change is less than thr * ave(abs(offdiag(s)))}
 \item{maxit}{Maximum number of iterations of outer loop. Default 10,000}
 \item{approx}{Approximation flag: if true, computes Meinhausen-Buhlmann(2006)
@@ -29,6 +32,10 @@ Default FALSE}
 Estimates a sparse inverse covariance matrix using a lasso (L1) penalty,
 using the approach of Friedman, Hastie and Tibshirani (2007).
 The Meinhausen-Buhlmann (2006) approximation is also implemented. 
+The algorithm can also be used to estimate a graph with missing edges,
+by specifying which edges to omit in the zero argument, and setting rho=0.
+Or both fixed zeroes for some elements and regularization on the other elements
+can be specified.
 }
 \value{
 A list with components
@@ -62,6 +69,17 @@ x<-matrix(rnorm(50*20),ncol=20)
 s<- var(x)
 a<-glasso(s, rho=.01)
 aa<-glasso(s,rho=.02, w.init=a$w, wi.init=a$wi)
+
+# example with structural zeros and no regularization,
+# from Whittaker's Graphical models book  page xxx.
+
+s=c(10,1,5,4,10,2,6,10,3,10)
+S=matrix(0,nrow=4,ncol=4)
+S[row(S)>=col(S)]=s
+S=(S+t(S))
+diag(S)<-10
+zero<-matrix(c(1,3,2,4),ncol=2,byrow=TRUE)
+a<-glasso(S,0,zero=zero)
 }
 \keyword{multivariate}
 \keyword{models}
