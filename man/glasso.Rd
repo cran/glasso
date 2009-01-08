@@ -26,7 +26,7 @@ Only needed when start="warm" is specified}
 Only needed when start="warm" is specified}
 \item{trace}{Flag for printing out information as iterations proceed.
 Default FALSE}
-}}
+}
 
 \details{
 Estimates a sparse inverse covariance matrix using a lasso (L1) penalty,
@@ -55,7 +55,7 @@ Jerome Friedman, Trevor Hastie and Robert Tibshirani (2007).
 Sparse inverse covariance estimation with the lasso.
 Biostatistics 2007. http://www-stat.stanford.edu/~tibs/ftp/graph.pdf
 
-Meinshausen, N. and  B\"{u}hlmann, P.(2006)
+Meinshausen, N. and  Buhlmann, P.(2006)
  High dimensional graphs
 and variable selection with the lasso.
 Annals of Statistics,34, p1436-1462.

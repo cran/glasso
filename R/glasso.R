@@ -35,7 +35,6 @@ if(start.type=="warm"){
       ww=w.init
       xx=wi.init
   }
-     
 
 itrace=1*trace
 ipen=1*(penalize.diagonal)
