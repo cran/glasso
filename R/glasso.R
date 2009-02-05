@@ -39,17 +39,17 @@ if(start.type=="warm"){
 itrace=1*trace
 ipen=1*(penalize.diagonal)
 ia=1*approx
-mode(rho)="single"
-mode(s)="single"
-mode(ww)="single"
-mode(xx)="single"
+mode(rho)="double"
+mode(s)="double"
+mode(ww)="double"
+mode(xx)="double"
 mode(n)="integer"
 mode(maxit)="integer"
 mode(ia)="integer"
 mode(itrace)="integer"
 mode(ipen)="integer"
 mode(is)="integer"
-mode(thr)="single"
+mode(thr)="double"
 
 
 junk<-.Fortran("glasso",
@@ -65,7 +65,7 @@ maxit=maxit,
 ww=ww,
 xx=xx,
 niter=integer(1),
-del=single(1),
+del=double(1),
 ierr=integer(1),
 PACKAGE="glasso"
 )

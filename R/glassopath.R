@@ -15,25 +15,25 @@ rholist=sort(rholist)
                 nrho=length(rholist)
                 beta=what=array(0,c(n,n,nrho))
                 jerrs=rep(0,nrho)
-                mode(rholist) = "single"
+                mode(rholist) = "double"
                 mode(nrho) = "integer"
-                mode(rho) = "single"
-                mode(s) = "single"
-                mode(ww) = "single"
-                mode(xx) = "single"
+                mode(rho) = "double"
+                mode(s) = "double"
+                mode(ww) = "double"
+                mode(xx) = "double"
                 mode(n) = "integer"
                 mode(maxit) = "integer"
                 mode(ia) = "integer"
                 mode(itrace) = "integer"
                 mode(ipen) = "integer"
-                mode(thr) = "single"
-                mode(beta) = "single"
-                mode(what) = "single"
+                mode(thr) = "double"
+                mode(beta) = "double"
+                mode(what) = "double"
                 mode(jerrs) = "integer"
 
         junk <- .Fortran("glassopath", beta=beta,what=what,jerrs=jerrs,rholist,nrho,n, s, rho, ia,        itrace, ipen,
         thr, maxit = maxit, ww = ww, xx = xx, niter = integer(1), 
-        del = single(1), ierr = integer(1), PACKAGE="glasso")
+        del = double(1), ierr = integer(1), PACKAGE="glasso")
 
     xx = array(junk$beta,  c(n,n,nrho))
     what = array(junk$what,  c(n,n,nrho))
