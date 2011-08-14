@@ -36,6 +36,9 @@ The algorithm can also be used to estimate a graph with missing edges,
 by specifying which edges to omit in the zero argument, and setting rho=0.
 Or both fixed zeroes for some elements and regularization on the other elements
 can be specified.
+
+This version 1.5 uses an exacting screening rule proposed by Daniela
+Witten to speed up the computations considerably. Details to follow.
 }
 \value{
 A list with components

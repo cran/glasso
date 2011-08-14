@@ -1,0 +1,31 @@
+AC_INIT(src/Makevars.in)
+###
+### It would be ideal if this worked, but it doesn't!
+### FC=`"${R_HOME}/bin/R" CMD config FC`
+###
+AC_PREREQ(2.59)
+echo " This package has only been tested with gfortran."
+echo " So some checks are needed for a Fortran 90 compiler."
+echo " R_HOME is ${R_HOME}"
+
+FC=`"${R_HOME}/bin/R" CMD config FC`
+if test "x${FC}" = x; then
+  echo "I cannot detect your Fortran 90 compiler, so I will"
+  echo "   attempt Fortran 90 compiler detection on my own."
+  echo "   NOTE:  All bets are off!"
+  AC_PROG_FC()
+fi
+
+case "${FC}" in
+    gfortran*)
+      echo "  R configured for gfortran; Good!"
+      AC_SUBST(OUR_FCFLAGS, "-fdefault-real-8 -ffloat-store")
+      AC_OUTPUT(src/Makevars)
+      ;;
+    *)
+      echo "    Unsupported Fortran 90 compiler or Fortran 90"
+      echo "    compilers unavailable! Stop!"
+      exit 1
+      ;;
+esac
+

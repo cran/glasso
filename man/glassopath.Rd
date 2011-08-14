@@ -6,7 +6,7 @@ Estimates a sparse inverse covariance matrix using a lasso (L1) penalty, along a
 of values for the regularization parameter
 }
 \usage{
-glassopath(s, rholist=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE, w.init=NULL,wi.init=NULL, trace=FALSE)
+glassopath(s, rholist=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE, w.init=NULL,wi.init=NULL, trace=1)
 }
 \arguments{
 \item{s}{Covariance matrix:p by p matrix (symmetric)}
@@ -26,7 +26,7 @@ Dafault TRUE.}
 Only needed when start="warm" is specified}
 \item{wi.init}{Optional starting values for estimated inverse covariance matrix (p by p)
 Only needed when start="warm" is specified}
-\item{trace}{Flag for printing out information as iterations proceed.
+\item{trace}{Flag for printing out information as iterations proceed. trace=0 means no printing; trace=1 means outer level printing;  trace=2 means  full printing
 Default FALSE}
 }
 
