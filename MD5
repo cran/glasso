@@ -1,4 +1,4 @@
-f406c5bd834fa4a147ae69be11fdd075 *DESCRIPTION
+23983ca57d42ca46ba2fdde7b6cfa26c *DESCRIPTION
 ab758604ecba90b73c07e7c7d434d6b1 *INDEX
 a98919657d182a30729381c29aa13061 *NAMESPACE
 e0d98a56ee236a328872232545fba02a *R/glasso.R
@@ -9,5 +9,5 @@ c34362ead057a7210eecef2df708bb1f *configure.in
 99fdb09e2f9d58d0f0f3e53985f268ce *man/glassopath.Rd
 e98bb55834dd7e352df8d2a998a9d403 *src/Makevars
 03d5d624b734ace367b45b789fbf66a4 *src/Makevars.in
-1bd30ec98a50c49ec6aabebbb458d0cb *src/Makevars.win
+e87c66b0a39f6c4f7e6e0fa52646aff6 *src/Makevars.win
 b699363ee89df5e8bef5307b664ada2f *src/glasso.f90
