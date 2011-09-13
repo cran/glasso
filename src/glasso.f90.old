@@ -1,9 +1,13 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
 !
 !           Lasso regularized covariance matrix estimate
 !
-!                         version (9/13/
+!                         version (8/
 !
-! call glasso(n,ss,rho,ia,is,itr,ipen,thr,maxit,ww,wwi,niter,del,jerr)
+! call lasinv(n,ss,rho,ia,is,itr,ipen,thr,maxit,ww,wwi,niter,del,jerr)
 !
 ! Input:
 !    n = dimension of matrix
@@ -41,7 +45,7 @@
 !      jerr != 0 => memory allocation error - no output returned
 !
 !             
-      subroutine glasso(nn,sss,rrho,ia,is,itr,ipen,thr,maxit,www,wwwi,nniter,ddel,jerr)
+      subroutine glasso(nn,sss,rrho,ia,is,itr,ipen,thr,maxit,www,wwwi,nniter,ddel,jerr)    
       real sss(nn,nn),rrho(nn,nn),www(nn,nn),wwwi(nn,nn)                    
       real, dimension (:), allocatable :: ss,rho,ww,wwi                         
       integer, dimension (:), allocatable :: ir,ie                              
@@ -167,7 +171,7 @@
       ie(k)=nc                                                              
       ic(1,nc)=is                                                           
       is=is+1                                                               
-      call row(nc,1,ir((is-1):n),n,ss,rho,ie,na,ir(is:n))                   
+      call row(nc,1,k,n,ss,rho,ie,na,ir(is))                                
       if(na .ne. 0)goto 10241                                               
       ic(2,nc)=is-1                                                         
       goto 10221                                                            
@@ -179,7 +183,7 @@
       il=iss+nas-1                                                          
       if(il.ge.n)goto 10252                                                 
       is=is+na                                                              
-      call row(nc,nas,ir(iss:n),n,ss,rho,ie,na,ir(is:n))                    
+      call row(nc,nas,ir(iss),n,ss,rho,ie,na,ir(is))                        
       if(na.eq.0)goto 10252                                                 
       goto 10251                                                            
 10252 continue                                                              
@@ -207,7 +211,7 @@
 10262 continue                                                              
       return                                                                
       end                                                                   
-      subroutine lasinv1(n,ss,rho,ia,is,itr,ipen,thr,maxit,ww,wwi,niter, del,jerr)   
+      subroutine lasinv1(n,ss,rho,ia,is,itr,ipen,thr,maxit,ww,wwi,niter,del,jerr) 
       parameter(eps=1.0e-7)                                                 
       real ss(n,n),rho(n,n),ww(n,n),wwi(n,n)                                
       real, dimension (:,:), allocatable :: vv,xs                               
@@ -437,13 +441,14 @@
 10720 do 10721 j=2,nm1                                                      
       jm1=j-1                                                               
       jp1=j+1                                                               
-      wwi(j,j)=1.0/(ww(j,j)+dot_product(xs(1:jm1,j),ww(1:jm1,j))  +dot_product(xs(j:nm1,j),ww(jp1:n,j)))
+      wwi(j,j)=1.0/(ww(j,j)+dot_product(xs(1:jm1,j),ww(1:jm1,j))  +dot_product(xs(j:nm1,j),ww(jp1:n,j)))    
       wwi(1:jm1,j)=wwi(j,j)*xs(1:jm1,j)                                     
       wwi(jp1:n,j)=wwi(j,j)*xs(j:nm1,j)                                     
 10721 continue                                                              
 10722 continue                                                              
       return                                                                
       end                                                                   
+
 
       subroutine glassopath(beta,what,jerrs,rholist, nrho,n,ss,rho,ia,itr,ipen,thr,maxit,ww,wwi,niter,del,jerr)
 !      implicit double precision(a-h, o-z)

@@ -39,6 +39,16 @@ The algorithm can also be used to estimate a graph with missing edges,
 by specifying which edges to omit in the zero argument, and setting rho=0.
 Or both fixed zeroes for some elements and regularization on the other elements
 can be specified.
+
+This version 1.7 uses a block diagonal screening rule to speed up
+computations considerably. Details are given in the paper "New insights
+and fast computations for the graphical lasso" by Daniela Witten, Jerry
+Friedman, and Noah Simon, to appear in "Journal of Computational and
+Graphical Statistics". The idea is as follows: it is possible to quickly
+check whether the solution to the graphical lasso problem will be block
+diagonal, for a given value of the tuning parameter. If so, then one can
+simply apply the graphical lasso algorithm to each block separately,
+leading to massive speed improvements.  
 }
 \value{
 A list with components
@@ -59,6 +69,10 @@ Meinshausen, N. and  Buhlmann, P.(2006)
  High dimensional graphs
 and variable selection with the lasso.
 Annals of Statistics,34, p1436-1462.
+
+Daniela Witten, Jerome Friedman, Noah Simon (2011).
+New insights and fast computation for the graphical lasso. To appear in
+Journal of Computational and Graphical Statistics.
 }
 \examples{
 
