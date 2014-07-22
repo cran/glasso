@@ -8,9 +8,9 @@ if(!is.matrix(rho) & length(rho)!=1 & length(rho)!=nrow(s))
    {stop("Wrong number of elements in rho")}
 if(length(rho)==1){
    if(rho==0){ 
- cat("With rho=0, there may be convergence problems if the input matrix s
- is not of full rank",fill=TRUE)}
-}
+ warning("With rho=0, there may be convergence problems if the input matrix 
+ is not of full rank")
+}}
 
 if(is.vector(rho)){ rho=matrix(sqrt(rho))%*%sqrt(rho)}
 if(length(rho)==1){rho=matrix(rho,ncol=n,nrow=n)}

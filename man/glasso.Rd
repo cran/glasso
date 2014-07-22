@@ -5,7 +5,9 @@
 Estimates a sparse inverse covariance matrix using a lasso (L1) penalty
 }
 \usage{
-glasso(s, rho, zero=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE, start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE)
+glasso(s, rho, zero=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, 
+penalize.diagonal=TRUE, start=c("cold","warm"), 
+w.init=NULL,wi.init=NULL, trace=FALSE)
 }
 \arguments{
 \item{s}{Covariance matrix:p by p matrix (symmetric)}

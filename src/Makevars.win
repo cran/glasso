@@ -1,2 +1,2 @@
-PKG_FCFLAGS=-fdefault-real-8 
+PKG_FCFLAGS=-fdefault-real-8 -ffloat-store
 

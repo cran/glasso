@@ -319,7 +319,8 @@
       dlx=0.0                                                               
 10530 do 10531 m=1,n                                                        
       if(itr .eq. 0)goto 10551                                              
-      write(6,10560)m                                                       
+!     write(6,10560)m                                                       
+      call intpr('m',1,m,1)                                                       
 10560 format ('outer loop, m =',i10)                                        
 10551 continue                                                              
       x=xs(:,m)                                                             
@@ -480,7 +481,8 @@
 23013 continue
 23010 continue
 23011 continue
-      if(itr.gt.0) write(6,*) "rho=",rholist(i)
+!     if(itr.gt.0) write(6,*) "rho=",rholist(i)
+      if(itr.gt.0) call dblepr('rho=', -1, rholist(i), 1)
       itr2=itr
       if(itr2.gt.0) itr2=itr-1
       call glasso(n,ss,rho,ia,is,itr2,ipen,thr,maxit,ww,wwi,niter,del,jerr)
