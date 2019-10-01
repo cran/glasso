@@ -1,8 +1,8 @@
-glasso=function(s, rho, zero=NULL, thr=1.0e-4,maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE,start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE){
-n=nrow(s)
+glasso=function(s, rho,nobs=NULL, zero=NULL, thr=1.0e-4,maxit=1e4,  approx=FALSE, penalize.diagonal=TRUE,start=c("cold","warm"), w.init=NULL,wi.init=NULL, trace=FALSE){
 # on return, cflag=1 means the procedure did not converge, =0 means  it did
 
 BIG=10e9
+n=nrow(s)
 
 if(!is.matrix(rho) & length(rho)!=1 & length(rho)!=nrow(s))
    {stop("Wrong number of elements in rho")}
@@ -86,5 +86,7 @@ val= -log(d)+sum(diag(s%*%Sigmahati))+sum(abs(rho*temp))
 return(val)
 }
 crit=critfun(xx,s,rho,penalize.diagonal)
-return(list(w=ww,wi=xx,loglik=-(n/2)*crit,errflag=junk$ierr,approx=approx, del=junk$del, niter=junk$niter))
+loglik=NA
+if(!is.null(nobs)) loglik=-(nobs/2)*crit
+return(list(w=ww,wi=xx,loglik=loglik,errflag=junk$ierr,approx=approx, del=junk$del, niter=junk$niter))
 }

@@ -1,8 +1,8 @@
-9e100048db5c6fbde74725c20d32d8ab *DESCRIPTION
+221127194e4b26a07e13985c40925a45 *DESCRIPTION
 a98919657d182a30729381c29aa13061 *NAMESPACE
-9b2f2da42cd1d66c4e3cd38427a0bf7a *R/glasso.R
+4d3c6b4c4db738159f953e00df2394f7 *R/glasso.R
 c1a3c7a42d3c130ba02f4827f056ac9a *R/glassopath.R
-a92a091ed68d9cf0d5ee056b4ead20fb *man/glasso.Rd
+eda53f6f766738b1f564751d5d299160 *man/glasso.Rd
 e624eb3357a4d5c9dd0f2c5c734c7116 *man/glassopath.Rd
 eec797dc32427aee0efb399871b455b4 *src/glasso.f
 22909b3dcaec3bcf1cd20d2fe6134966 *src/glasso_init.c

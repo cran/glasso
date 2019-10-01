@@ -5,13 +5,15 @@
 Estimates a sparse inverse covariance matrix using a lasso (L1) penalty
 }
 \usage{
-glasso(s, rho, zero=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, 
+glasso(s, rho, nobs=NULL, zero=NULL, thr=1.0e-4, maxit=1e4,  approx=FALSE, 
 penalize.diagonal=TRUE, start=c("cold","warm"), 
 w.init=NULL,wi.init=NULL, trace=FALSE)
 }
 \arguments{
 \item{s}{Covariance matrix:p by p matrix (symmetric)}
 \item{rho}{(Non-negative) regularization parameter for lasso. rho=0 means no regularization. Can be a scalar (usual) or a symmetric p by p matrix, or a vector of length p. In the latter case, the penalty matrix has jkth element sqrt(rho[j]*rho[k]).}
+\item{nobs}{Number of observations used in computation of the  covariance matrix s. This quantity is need to compute the value of  log-likelihood.
+If not specified, loglik will be returned as NA.}
 \item{zero}{(Optional) indices of entries of inverse covariance to be constrained to be zero. The input should be a matrix with two columns, each row indicating
 the indices of elements to be constrained to be zero. The solution must be symmetric, so you need only  specify one of (j,k) and (k,j). An entry in the zero matrix
 overrides any entry in the rho matrix for a given element.}
